@@ -1,0 +1,53 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { locales } from '../i18n/utils';
+
+interface Props {
+	lang: string;
+}
+
+const { lang } = Astro.props;
+---
+
+<nav class="lang-switcher" aria-label="Language">
+	<ul>
+		{locales.map((l) => (
+			<li>
+				<a href={getRelativeLocaleUrl(l.code)} aria-current={l.code === lang ? 'page' : undefined}>
+					{l.label}
+				</a>
+			</li>
+		))}
+	</ul>
+</nav>
+
+<style>
+	.lang-switcher ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.lang-switcher a {
+		display: inline-block;
+		font-size: 0.78rem;
+		color: var(--color-navy-soft);
+		text-decoration: none;
+		padding: 0.3em 0.6em;
+		border-radius: 2px;
+		border: 1px solid transparent;
+	}
+
+	.lang-switcher a:hover {
+		border-color: var(--color-border-soft);
+	}
+
+	.lang-switcher a[aria-current='page'] {
+		color: var(--color-navy);
+		font-weight: 600;
+		border-color: var(--color-navy);
+	}
+</style>

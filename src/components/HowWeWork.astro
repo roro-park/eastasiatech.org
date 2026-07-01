@@ -1,0 +1,28 @@
+---
+import type { Dictionary } from '../i18n/ui';
+
+interface Props {
+	t: Dictionary;
+}
+
+const { t } = Astro.props;
+---
+
+<section id="how-we-work" class="how-we-work">
+	<div class="wrap how-we-work__inner">
+		<p class="eyebrow">{t.howWeWork.eyebrow}</p>
+		<h2>{t.howWeWork.heading}</h2>
+		<hr class="accent-underline" />
+		<p>{t.howWeWork.body}</p>
+		<p>{t.howWeWork.bodySecondary}</p>
+		<ul class="pill-list">
+			{t.howWeWork.principles.map((p) => <li>{p}</li>)}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.how-we-work__inner {
+		max-width: 78ch;
+	}
+</style>

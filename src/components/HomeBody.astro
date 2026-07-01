@@ -1,0 +1,23 @@
+---
+import { useTranslations } from '../i18n/utils';
+import Hero from './Hero.astro';
+import Mission from './Mission.astro';
+import WhatWeDo from './WhatWeDo.astro';
+import AreasOfExploration from './AreasOfExploration.astro';
+import HowWeWork from './HowWeWork.astro';
+import Contact from './Contact.astro';
+
+interface Props {
+	lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Hero t={t} />
+<Mission t={t} />
+<WhatWeDo t={t} />
+<AreasOfExploration t={t} />
+<HowWeWork t={t} />
+<Contact t={t} />

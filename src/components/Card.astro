@@ -1,0 +1,16 @@
+---
+import type { CardItem } from '../i18n/ui';
+
+interface Props {
+	item: CardItem;
+}
+
+const { item } = Astro.props;
+---
+
+<div class="card">
+	<slot name="icon" />
+	<h3 class="card__title">{item.title}</h3>
+	<p>{item.body}</p>
+	{item.note && <p class="card__note">{item.note}</p>}
+</div>

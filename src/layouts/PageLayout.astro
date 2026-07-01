@@ -1,0 +1,52 @@
+---
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import '../styles/global.css';
+import { useTranslations, locales } from '../i18n/utils';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const canonical = getAbsoluteLocaleUrl(lang);
+---
+
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{t.seo.title}</title>
+		<meta name="description" content={t.seo.description} />
+		<link rel="canonical" href={canonical} />
+
+		{locales.map((l) => (
+			<link rel="alternate" hreflang={l.code} href={getAbsoluteLocaleUrl(l.code)} />
+		))}
+		<link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl('en')} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={t.seo.title} />
+		<meta property="og:description" content={t.seo.description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:locale" content={lang} />
+	</head>
+	<body>
+		<Header lang={lang} t={t} />
+		<main>
+			<slot />
+		</main>
+		<Footer lang={lang} t={t} />
+	</body>
+</html>

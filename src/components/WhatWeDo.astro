@@ -1,0 +1,33 @@
+---
+import type { Dictionary } from '../i18n/ui';
+import Card from './Card.astro';
+import IconResearch from './icons/IconResearch.astro';
+import IconObservatory from './icons/IconObservatory.astro';
+import IconCollaboration from './icons/IconCollaboration.astro';
+import IconAdvisory from './icons/IconAdvisory.astro';
+
+interface Props {
+	t: Dictionary;
+}
+
+const { t } = Astro.props;
+const icons = [IconResearch, IconObservatory, IconCollaboration, IconAdvisory];
+---
+
+<section id="what-we-do" class="what-we-do">
+	<div class="wrap">
+		<p class="eyebrow">{t.whatWeDo.eyebrow}</p>
+		<h2>{t.whatWeDo.heading}</h2>
+		<hr class="accent-underline" />
+		<div class="card-grid">
+			{t.whatWeDo.items.map((item, i) => {
+				const Icon = icons[i];
+				return (
+					<Card item={item}>
+						<Icon slot="icon" />
+					</Card>
+				);
+			})}
+		</div>
+	</div>
+</section>

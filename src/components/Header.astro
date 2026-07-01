@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import logoHorizontal from '../assets/logo/eati-horizontal.png';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { Dictionary } from '../i18n/ui';
+
+interface Props {
+	lang: string;
+	t: Dictionary;
+}
+
+const { lang, t } = Astro.props;
+const home = getRelativeLocaleUrl(lang);
+---
+
+<header class="site-header">
+	<div class="wrap site-header__inner">
+		<a href={home} class="site-header__brand" aria-label="East Asia Technology Institute">
+			<Image src={logoHorizontal} alt="East Asia Technology Institute" widths={[200, 400]} sizes="240px" width={240} />
+		</a>
+		<nav class="site-header__nav" aria-label="Primary">
+			<a href="#what-we-do">{t.header.nav.whatWeDo}</a>
+			<a href="#areas">{t.header.nav.areas}</a>
+			<a href="#how-we-work">{t.header.nav.howWeWork}</a>
+			<a href="#contact">{t.header.nav.contact}</a>
+		</nav>
+		<LanguageSwitcher lang={lang} />
+	</div>
+</header>
+
+<style>
+	.site-header {
+		border-bottom: 1px solid var(--color-border-soft);
+		background: var(--color-bg);
+		position: sticky;
+		top: 0;
+		z-index: 10;
+	}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding-block: 0.85rem;
+		flex-wrap: wrap;
+	}
+
+	.site-header__brand {
+		display: flex;
+		align-items: center;
+	}
+
+	.site-header__brand :global(img) {
+		display: block;
+		height: auto;
+	}
+
+	.site-header__nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.4rem;
+		font-size: 0.9rem;
+	}
+
+	.site-header__nav a {
+		color: var(--color-navy);
+		text-decoration: none;
+		border-bottom: 2px solid transparent;
+		padding-bottom: 2px;
+	}
+
+	.site-header__nav a:hover {
+		border-bottom-color: var(--color-blue);
+	}
+</style>
