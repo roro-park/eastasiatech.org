@@ -78,6 +78,16 @@ Visual direction is "warm institutional": a soft cream background, bordered uppe
 
 `astro.config.mjs` sets `site` and configures `@astrojs/sitemap` with a per-locale `hreflang` map, so `npm run build` emits a sitemap with correct language alternates for all five locales. `PageLayout.astro` also sets per-locale `<title>`/`<meta description>`, canonical URLs, and `hreflang` `<link>` tags.
 
+## Deployment
+
+Every push to `main` builds and deploys the site to GitHub Pages via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). `public/CNAME` points the Pages deployment at the custom domain `eastasiatech.org` (matching the `site` set in `astro.config.mjs`).
+
+One-time setup on GitHub (not something a workflow file can do for you):
+
+1. In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
+2. In **Settings → Pages → Custom domain**, enter `eastasiatech.org` and enable **Enforce HTTPS** once DNS has propagated.
+3. At your DNS provider, point `eastasiatech.org` at GitHub Pages (an `ALIAS`/`ANAME` record, or the four GitHub Pages `A` records, per [GitHub's custom domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)).
+
 ## More context
 
 See [AGENTS.md](./AGENTS.md) (symlinked as `CLAUDE.md`) for deeper implementation notes and gotchas aimed at whoever (human or AI) picks up this codebase next.
