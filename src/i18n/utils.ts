@@ -25,12 +25,6 @@ export interface LocaleMeta {
 	label: string;
 }
 
-// `code` is what's passed to astro:i18n's getRelativeLocaleUrl() — it maps
-// to the URL path via the { codes, path } config in astro.config.mjs.
-export const locales: LocaleMeta[] = [
-	{ code: 'en', label: 'English' },
-	{ code: 'ko', label: '한국어' },
-	{ code: 'ja', label: '日本語' },
-	{ code: 'zh-TW', label: '繁體中文' },
-	{ code: 'zh-CN', label: '简体中文' },
-];
+// Only English is routable for now (see astro.config.mjs). Restore the other
+// entries here once ko/ja/zh-tw/zh-cn are re-added to astro.config.mjs.
+export const locales: LocaleMeta[] = [{ code: 'en', label: 'English' }];

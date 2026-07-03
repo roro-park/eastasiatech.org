@@ -1,7 +1,7 @@
 ---
 import { getAbsoluteLocaleUrl } from 'astro:i18n';
 import '../styles/global.css';
-import { useTranslations, locales } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -30,11 +30,6 @@ const canonical = getAbsoluteLocaleUrl(lang);
 		<title>{t.seo.title}</title>
 		<meta name="description" content={t.seo.description} />
 		<link rel="canonical" href={canonical} />
-
-		{locales.map((l) => (
-			<link rel="alternate" hreflang={l.code} href={getAbsoluteLocaleUrl(l.code)} />
-		))}
-		<link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl('en')} />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={t.seo.title} />

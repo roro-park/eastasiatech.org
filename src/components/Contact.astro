@@ -11,9 +11,7 @@ const { t } = Astro.props;
 
 <section id="contact" class="contact">
 	<div class="wrap contact__inner">
-		<p class="eyebrow">{t.contact.eyebrow}</p>
-		<h2>{t.contact.heading}</h2>
-		<hr class="accent-underline" />
+		<p class="eyebrow eyebrow--lg">{t.contact.eyebrow}</p>
 		<p>{t.contact.body}</p>
 		<a class="button" href={`mailto:${legal.contactEmail}`}>{t.contact.emailLabel}</a>
 	</div>

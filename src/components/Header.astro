@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import logoHorizontal from '../assets/logo/eati-horizontal.png';
-import LanguageSwitcher from './LanguageSwitcher.astro';
 import type { Dictionary } from '../i18n/ui';
 
 interface Props {
@@ -25,7 +24,6 @@ const home = getRelativeLocaleUrl(lang);
 			<a href="#how-we-work">{t.header.nav.howWeWork}</a>
 			<a href="#contact">{t.header.nav.contact}</a>
 		</nav>
-		<LanguageSwitcher lang={lang} />
 	</div>
 </header>
 
@@ -33,9 +31,17 @@ const home = getRelativeLocaleUrl(lang);
 	.site-header {
 		border-bottom: 1px solid var(--color-border-soft);
 		background: var(--color-bg);
-		position: sticky;
-		top: 0;
-		z-index: 10;
+	}
+
+	/* Below this width the logo/nav wrap across multiple lines, so pinning
+	   that taller block to the top would cover most of the screen while
+	   scrolling -- only stick once the header is a single compact row. */
+	@media (min-width: 700px) {
+		.site-header {
+			position: sticky;
+			top: 0;
+			z-index: 10;
+		}
 	}
 
 	.site-header__inner {

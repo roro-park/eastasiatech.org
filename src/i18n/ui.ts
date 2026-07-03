@@ -25,17 +25,14 @@ export interface Dictionary {
 	};
 	mission: {
 		eyebrow: string;
-		heading: string;
 		body: string;
 	};
 	whatWeDo: {
 		eyebrow: string;
-		heading: string;
 		items: [CardItem, CardItem, CardItem, CardItem];
 	};
 	areas: {
 		eyebrow: string;
-		heading: string;
 		intro: string;
 		items: [CardItem, CardItem, CardItem, CardItem];
 	};
@@ -48,7 +45,6 @@ export interface Dictionary {
 	};
 	contact: {
 		eyebrow: string;
-		heading: string;
 		body: string;
 		emailLabel: string;
 	};

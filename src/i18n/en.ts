@@ -23,12 +23,10 @@ export const en: Dictionary = {
 	},
 	mission: {
 		eyebrow: 'About EATI',
-		heading: 'An early-stage regional platform',
 		body: 'EATI is currently in an early development stage. We are building a regional platform that connects research, policy, technical implementation, business strategy, and cross-border collaboration. Our goal is to help companies, SMEs, founders, researchers, and institutions understand emerging technology developments, navigate regional differences, and build responsible partnerships across East Asia and with other regions. EATI works across emerging technology fields where governance, innovation, infrastructure, and cross-border cooperation intersect.',
 	},
 	whatWeDo: {
 		eyebrow: 'What We Do',
-		heading: 'Four ways we work',
 		items: [
 			{
 				title: 'Research and Policy Analysis',
@@ -51,7 +49,6 @@ export const en: Dictionary = {
 	},
 	areas: {
 		eyebrow: 'Current Areas of Exploration',
-		heading: 'Where we are focused today',
 		intro:
 			'Alongside our core programmes, EATI is actively exploring the following questions.',
 		items: [
@@ -89,7 +86,6 @@ export const en: Dictionary = {
 	},
 	contact: {
 		eyebrow: 'Work With Us',
-		heading: "Let's work together",
 		body: 'EATI welcomes conversations with researchers, founders, SMEs, companies, policy professionals, technologists, civil society actors, institutions, and regional partners interested in responsible technology and East Asian cooperation. For research collaboration, advisory work, pilot projects, speaking, partnerships, or general inquiries, get in touch.',
 		emailLabel: 'Email us',
 	},

@@ -5,31 +5,15 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://eastasiatech.org',
+	// Only English is live for now — the drafted ko/ja/zh-tw/zh-cn translations
+	// in src/i18n/ are kept for when the user provides reviewed copy. Re-add
+	// them here (and restore src/pages/<locale>/index.astro) at that point.
 	i18n: {
 		defaultLocale: 'en',
-		locales: [
-			'en',
-			'ko',
-			'ja',
-			{ path: 'zh-tw', codes: ['zh-TW'] },
-			{ path: 'zh-cn', codes: ['zh-CN'] },
-		],
+		locales: ['en'],
 		routing: {
 			prefixDefaultLocale: false,
 		},
 	},
-	integrations: [
-		sitemap({
-			i18n: {
-				defaultLocale: 'en',
-				locales: {
-					en: 'en',
-					ko: 'ko',
-					ja: 'ja',
-					'zh-tw': 'zh-TW',
-					'zh-cn': 'zh-CN',
-				},
-			},
-		}),
-	],
+	integrations: [sitemap()],
 });

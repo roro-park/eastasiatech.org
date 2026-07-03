@@ -23,12 +23,10 @@ export const zhTw: Dictionary = {
 	},
 	mission: {
 		eyebrow: '關於 EATI',
-		heading: '一個仍在初期發展的區域平台',
 		body: 'EATI 目前處於早期發展階段。我們正在建構一個連結研究、政策、技術落實、商業策略與跨境合作的區域平台。我們的目標是協助企業、中小企業、創業者、研究人員與機構理解新興科技的發展、掌握區域間的差異,並在東亞及其他地區建立負責任的夥伴關係。EATI 的工作範圍涵蓋治理、創新、基礎建設與跨境合作交會的各個新興科技領域。',
 	},
 	whatWeDo: {
 		eyebrow: '我們的工作',
-		heading: '四大工作方向',
 		items: [
 			{
 				title: '研究與政策分析',
@@ -51,7 +49,6 @@ export const zhTw: Dictionary = {
 	},
 	areas: {
 		eyebrow: '目前探索中的議題',
-		heading: '我們目前關注的重點',
 		intro: '除了核心工作項目之外,EATI 也正積極探索以下議題。',
 		items: [
 			{
@@ -82,7 +79,6 @@ export const zhTw: Dictionary = {
 	},
 	contact: {
 		eyebrow: '與我們合作',
-		heading: '一起合作',
 		body: 'EATI 歡迎對負責任科技與東亞合作有興趣的研究人員、創業者、中小企業、企業、政策專業人士、技術人員、公民社會行動者、機構與區域夥伴與我們展開對話。無論是研究合作、顧問服務、試點計畫、演講邀約、夥伴關係或一般諮詢,歡迎與我們聯絡。',
 		emailLabel: '寄送電子郵件',
 	},

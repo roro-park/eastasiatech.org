@@ -2,7 +2,7 @@
 
 Marketing site for the **East Asia Technology Institute (EATI)** — an independent, Korea-registered research and advisory institute working on emerging technology governance, responsible innovation, and regional cooperation across East Asia.
 
-A single-page site, fully localized into five languages: English, Korean, Japanese, Traditional Chinese (Taiwan), and Simplified Chinese (Mainland).
+A single-page site, built to eventually localize into five languages (English, Korean, Japanese, Traditional Chinese, Simplified Chinese) via Astro's built-in i18n routing. **Only English is live right now** — the drafted ko/ja/zh-tw/zh-cn copy needs a review pass before it goes back online (see [Editing copy](#editing-copy)).
 
 ## Getting started
 
@@ -11,15 +11,7 @@ npm install
 npm run dev
 ```
 
-The site runs at `http://localhost:4321`. Available locales during development:
-
-| Locale | Path |
-| :--- | :--- |
-| English (default) | `/` |
-| Korean | `/ko/` |
-| Japanese | `/ja/` |
-| Traditional Chinese | `/zh-tw/` |
-| Simplified Chinese | `/zh-cn/` |
+The site runs at `http://localhost:4321`.
 
 ## Commands
 
@@ -41,34 +33,35 @@ src/
 │   ├── legal.ts          # Untranslated factual footer text (company name, registration, address)
 │   └── utils.ts          # useTranslations(lang), locale metadata for the switcher
 ├── layouts/
-│   └── PageLayout.astro # <html>/<head> shell: SEO, hreflang, favicons
+│   └── PageLayout.astro # <html>/<head> shell: SEO, canonical, favicons
 ├── components/
 │   ├── HomeBody.astro   # Composes the full page for a given `lang`
-│   ├── Header.astro, LanguageSwitcher.astro
+│   ├── Header.astro
 │   ├── Hero.astro, Mission.astro, WhatWeDo.astro, AreasOfExploration.astro,
 │   │   HowWeWork.astro, Contact.astro, Footer.astro, Card.astro
 │   └── icons/            # Hand-authored inline SVG icons for the card grids
 ├── assets/logo/          # Logo lockups, imported via astro:assets for optimization
 ├── styles/global.css     # Design tokens (color, type, spacing) — no CSS framework
 └── pages/
-    ├── index.astro        # English (root)
-    └── ko/, ja/, zh-tw/, zh-cn/index.astro   # thin per-locale stubs
+    └── index.astro        # English (root) — the only live route right now
 ```
 
-Each locale page file is a two-line stub — all real markup and composition lives once in `HomeBody.astro` and the section components it renders.
+`index.astro` is a two-line stub — all real markup and composition lives once in `HomeBody.astro` and the section components it renders.
 
 ## Editing copy
 
-Edit the matching file in `src/i18n/` (`en.ts`, `ko.ts`, `ja.ts`, `zh-tw.ts`, `zh-cn.ts`). Every file is typed against the `Dictionary` interface in `src/i18n/ui.ts`, so a missing translation key is a type error in your editor (or via `npx astro check`, which prompts to install `@astrojs/check` + `typescript` the first time you run it) rather than silently shipping blank text.
+Edit `src/i18n/en.ts` for the live English copy. `ko.ts`, `ja.ts`, `zh-tw.ts`, and `zh-cn.ts` hold draft translations that are **not currently live** (see below) — edit those once reviewed copy is ready to publish. Every file is typed against the `Dictionary` interface in `src/i18n/ui.ts`, so a missing key is a type error in your editor (or via `npx astro check`, which prompts to install `@astrojs/check` + `typescript` the first time you run it) rather than silently shipping blank text.
 
-The footer's legal block (company name, Korean legal name, business registration number, address, copyright) lives in `src/i18n/legal.ts` and is **not** translated per-locale — it's shared byte-for-byte across all five locales so a translation error can never alter the factual/legal text.
+The footer's legal block (company name, Korean legal name, business registration number, address, copyright) lives in `src/i18n/legal.ts` and is **not** translated per-locale — it's shared byte-for-byte across all locales so a translation error can never alter the factual/legal text.
 
-## Adding a locale
+## Bringing back other locales
 
-1. Add the locale to `astro.config.mjs` under `i18n.locales` (and the sitemap integration's `i18n.locales` map).
-2. Add the locale to the `locales` array in `src/i18n/utils.ts`.
-3. Create `src/i18n/<locale>.ts` implementing the `Dictionary` type, and register it in `dictionaries` in `src/i18n/utils.ts`.
-4. Create `src/pages/<path>/index.astro` following the existing per-locale stubs.
+Only English is routed right now (`astro.config.mjs`'s `i18n.locales` is just `['en']`) while the ko/ja/zh-tw/zh-cn translations are reviewed. `src/i18n/ko.ts`/`ja.ts`/`zh-tw.ts`/`zh-cn.ts` still exist and are still imported by `src/i18n/utils.ts` — they're just not reachable via a route. To re-enable a locale once its copy is finalized:
+
+1. Add it back to `astro.config.mjs` under `i18n.locales` (and add the sitemap integration's `i18n.locales` map back).
+2. Add it back to the `locales` array in `src/i18n/utils.ts`.
+3. Recreate `src/pages/<path>/index.astro` as `<PageLayout lang="..."><HomeBody lang="..." /></PageLayout>` (check git history for the previous versions).
+4. Re-add a language switcher to `Header.astro` (previously `src/components/LanguageSwitcher.astro`, removed along with the routes — check git history).
 
 ## Design
 
@@ -76,7 +69,7 @@ Visual direction is "warm institutional": a soft cream background, bordered uppe
 
 ## SEO
 
-`astro.config.mjs` sets `site` and configures `@astrojs/sitemap` with a per-locale `hreflang` map, so `npm run build` emits a sitemap with correct language alternates for all five locales. `PageLayout.astro` also sets per-locale `<title>`/`<meta description>`, canonical URLs, and `hreflang` `<link>` tags.
+`astro.config.mjs` sets `site` and configures `@astrojs/sitemap`, so `npm run build` emits a sitemap for the site. `PageLayout.astro` also sets the page `<title>`/`<meta description>` and canonical URL from `src/i18n/en.ts`'s `seo` fields.
 
 ## Deployment
 

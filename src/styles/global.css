@@ -84,6 +84,14 @@ section {
 	margin-bottom: 1rem;
 }
 
+/* Used where the eyebrow label stands in as the section's only heading
+   (no separate <h2> underneath), so it needs more visual weight. */
+.eyebrow--lg {
+	font-size: 1rem;
+	padding: 0.5em 1.1em;
+	margin-bottom: 1.75rem;
+}
+
 .card-grid {
 	display: grid;
 	grid-template-columns: 1fr;
