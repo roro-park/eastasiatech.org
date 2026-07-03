@@ -99,15 +99,13 @@ section {
 	margin-top: 2.5rem;
 }
 
+/* Capped at 2 columns (never 4-across) -- at this content width, 4 columns
+   squeezed each paragraph down to ~25 characters per line, breaking every
+   sentence into a ragged stack of short lines. 2 columns keeps the card/icon
+   look but gives body copy a normal, readable measure. */
 @media (min-width: 620px) {
 	.card-grid {
 		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-@media (min-width: 1000px) {
-	.card-grid {
-		grid-template-columns: repeat(4, 1fr);
 	}
 }
 
