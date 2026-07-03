@@ -16,7 +16,8 @@ const { t } = Astro.props;
 			<p class="site-footer__heading">{t.footer.legalHeading}</p>
 			<p>
 				{legal.companyName} {legal.companyNameKo}<br />
-				{legal.registered}. {legal.registrationNo}.<br />
+				{legal.registered}.<br />
+				<span class="site-footer__no-wrap">{legal.registrationNo}.</span><br />
 				{legal.address}.
 			</p>
 			<p class="site-footer__disclaimer">{legal.disclaimer}</p>
@@ -63,6 +64,10 @@ const { t } = Astro.props;
 
 	.site-footer__disclaimer {
 		margin-top: 0.75em;
+	}
+
+	.site-footer__no-wrap {
+		white-space: nowrap;
 	}
 
 	.site-footer__copyright {
